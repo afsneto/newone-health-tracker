@@ -74,9 +74,10 @@ venv\Scripts\activate     # Windows
 pip install -r requirements.txt
 ```
 4. Popular o Banco de Dados:
- - Execute o script de seed para gerar registros de teste.
+ - Execute o script de seed para gerar registros de teste. Se necessário, via docker-compose run app python seed.py para criar/popular o banco.
 ```bash
 python seed.py
+docker-compose run app python seed.py # via docker
 ```
 5. Inicie a API Backend:
 ```bash
