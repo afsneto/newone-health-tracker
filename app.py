@@ -6,7 +6,7 @@ from forms import HealthDataForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///health_data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data/health_data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -121,4 +121,4 @@ def update_record(id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)
