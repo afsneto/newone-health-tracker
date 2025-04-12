@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Record{% endblock %}
+
+{% block content %}
+  <h2 class="mb-4 text-center">Update Health Record</h2>
+  <div class="card mx-auto" style="max-width: 500px;">
+    <div class="card-body">
+      <form method="POST">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+          {{ form.date.label(class="form-label") }}
+          {{ form.date(class="form-control") }}
+          {% for error in form.date.errors %}
+            <div class="text-danger"><small>{{ error }}</small></div>
+          {% endfor %}
+        </div>
+        
+        <div class="form-group">
+          {{ form.exercise.label(class="form-label") }}
+          {{ form.exercise(class="form-control") }}
+          {% for error in form.exercise.errors %}
+            <div class="text-danger"><small>{{ error }}</small></div>
+          {% endfor %}
+        </div>
+        
+        <div class="form-group">
+          {{ form.meditation.label(class="form-label") }}
+          {{ form.meditation(class="form-control") }}
+          {% for error in form.meditation.errors %}
+            <div class="text-danger"><small>{{ error }}</small></div>
+          {% endfor %}
+        </div>
+        
+        <div class="form-group">
+          {{ form.sleep.label(class="form-label") }}
+          {{ form.sleep(class="form-control") }}
+          {% for error in form.sleep.errors %}
+            <div class="text-danger"><small>{{ error }}</small></div>
+          {% endfor %}
+        </div>
+        
+        <!-- Campos adicionais para o clima -->
+        <div class="form-group">
+          {{ form.city.label(class="form-label") }}
+          {{ form.city(class="form-control") }}
+          {% for error in form.city.errors %}
+            <div class="text-danger"><small>{{ error }}</small></div>
+          {% endfor %}
+        </div>
+        
+        <div class="form-group">
+          {{ form.country.label(class="form-label") }}
+          {{ form.country(class="form-control") }}
+          {% for error in form.country.errors %}
+            <div class="text-danger"><small>{{ error }}</small></div>
+          {% endfor %}
+        </div>
+        
+        <div class="form-group">
+          {{ form.temperature.label(class="form-label") }}
+          {{ form.temperature(class="form-control") }}
+          {% for error in form.temperature.errors %}
+            <div class="text-danger"><small>{{ error }}</small></div>
+          {% endfor %}
+        </div>
+        
+        <div class="form-group">
+          {{ form.description.label(class="form-label") }}
+          {{ form.description(class="form-control") }}
+          {% for error in form.description.errors %}
+            <div class="text-danger"><small>{{ error }}</small></div>
+          {% endfor %}
+        </div>
+        
+        <button type="submit" class="btn btn-info btn-block">Update</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

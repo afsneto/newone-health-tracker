@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Data Records{% endblock %}
+
+{% block content %}
+  <h2 class="mb-4 text-center">All Health Records</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped" style="table-layout: auto; width: 100%;">
+      <thead class="thead-dark">
+        <tr>
+          <th class="text-center" style="min-width: 150px; white-space: nowrap;">Date</th>
+          <th class="text-center">Exercise (minutes)</th>
+          <th class="text-center">Meditation (minutes)</th>
+          <th class="text-center">Sleep (hours)</th>
+          <th class="text-center">City</th>
+          <th class="text-center">Country</th>
+          <th class="text-center">Temperature (°C)</th>
+          <th class="text-center">Description</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for record in records %}
+          <tr>
+            <td class="text-center">{{ record.date.strftime('%Y-%m-%d') }}</td>
+            <td class="text-center">{{ record.exercise }}</td>
+            <td class="text-center">{{ record.meditation }}</td>
+            <td class="text-center">{{ record.sleep }}</td>
+            <td class="text-center">{{ record.city or 'N/A' }}</td>
+            <td class="text-center">{{ record.country or 'N/A' }}</td>
+            <td class="text-center">{{ record.temperature or 'N/A' }}</td>
+            <td class="text-center">{{ record.description or 'N/A' }}</td>
+            <td class="text-center">
+              <div class="d-flex">
+                <a href="{{ url_for('update_record', id=record.id) }}" class="btn btn-sm btn-primary flex-fill mr-1">Edit</a>
+                <form action="{{ url_for('delete_record', id=record.id) }}" method="POST" class="flex-fill" onsubmit="return confirm('Are you sure?');">
+                  <button type="submit" class="btn btn-sm btn-danger w-100">Delete</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Your Health Dashboard</h2>
+    <div id="charts" class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise Data</h5>
+                    <!-- Chart for exercise data -->
+                    <canvas id="exerciseChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Meditation Data</h5>
+                    <!-- Chart for meditation data -->
+                    <canvas id="meditationChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Sleep Data</h5>
+                    <!-- Chart for sleep data -->
+                    <canvas id="sleepChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Chart.js script goes here -->
+    <script>
+        // pass data from Flask to the template and convert to JSON
+        const dates = {{ dates | tojson }};
+        const exerciseData = {{ exercise_data | tojson }};
+        const meditationData = {{ meditation_data | tojson }};
+        const sleepData = {{ sleep_data | tojson }};
+
+        // get 2D drawing context
+        const exerciseCtx = document.getElementById('exerciseChart').getContext('2d');
+        const meditationCtx = document.getElementById('meditationChart').getContext('2d');
+        const sleepCtx = document.getElementById('sleepChart').getContext('2d');
+
+        //create charts
+        new Chart(exerciseCtx, {
+            type: 'bar',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Exercise (minutes)',
+                    data: exerciseData,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        })
+        
+        new Chart(meditationCtx, {
+            type: 'bar',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Exercise (minutes)',
+                    data: exerciseData,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        })
+        
+        new Chart(sleepCtx, {
+            type: 'bar',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Exercise (minutes)',
+                    data: exerciseData,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    
+    </script>
+     
+{% endblock %}

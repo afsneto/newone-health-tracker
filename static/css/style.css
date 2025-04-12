@@ -1,0 +1,17 @@
+/* Fixar o footer na parte inferior da viewport */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* Você pode definir uma altura fixa para o footer, se desejar */
+    height: 60px;
+    z-index: 1000;
+  }
+  
+  /* Adicionar margem ou padding na parte inferior do container principal 
+     para que o conteúdo não fique escondido atrás do footer */
+  main.container {
+    margin-bottom: 70px; /* Ajuste conforme a altura do footer */
+  }
+  
