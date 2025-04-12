@@ -11,6 +11,7 @@ services:
       - weather
     volumes:
       - .:/app
+      - ./data:/data
 
   weather:
     build:
@@ -18,3 +19,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5001:5001"
+
+volumes:
+  sqlite_data: 
