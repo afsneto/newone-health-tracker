@@ -47,7 +47,7 @@ def index():
 @app.route('/form', methods=['GET', 'POST'])
 def form():
     form = HealthDataForm()
-    API_KEY = "4e2849bebcb47a2261172cc0194c444c"
+    API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxx" # Inserir chave API https://openweathermap.org/api
     if form.validate_on_submit():
         # Extract weather data from API
         weather_data = get_weather_data(API_KEY)
