@@ -21,14 +21,15 @@ A aplicação é composta por três componentes principais:
 
 A estrutura do repositório está organizada da seguinte forma:
 ```graphql
-project-root/
+docker-compose.yml # Orquestração dos containers da API Backend e do microserviço Weather
+
+newone-health-tracker/
 │
 ├── app.py # API Backend: gerencia o fluxo da aplicação e o cadastro de atividades 
 ├── forms.py # Definição dos formulários para cadastro e atualização de dados (Flask-WTF) 
 ├── seed.py # Script para popular o banco de dados com dados de teste 
 ├── requirements.txt # Dependências do projeto 
 ├── Dockerfile # Dockerfile para construção do container da API Backend 
-├── docker-compose.yml # Orquestração dos containers da API Backend e do microserviço Weather 
 │ 
 ├── templates/ # Arquivos HTML (interface do usuário) 
 │ ├── base.html 
@@ -41,8 +42,8 @@ project-root/
 ├── static/ # Arquivos estáticos (CSS, imagens, JavaScript, etc.) 
 │ └── css/ 
 │ └── style.css 
-│
-│── weather_service/ # Microserviço para obtenção de dados climáticos
+
+weather_service/ # Microserviço para obtenção de dados climáticos
 │ └── weather_service.py # Código que consulta o OpenWeatherMap e expõe o endpoint REST (/weather) 
 │ └──  Dockerfile # Dockerfile para construção do container do microserviço Weather
 ```
