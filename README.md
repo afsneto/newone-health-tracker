@@ -15,7 +15,7 @@ A aplicação é composta por três componentes principais:
   Um microserviço independente que obtém dados climáticos do OpenWeatherMap e os disponibiliza através de um endpoint REST. A API Backend integra esses dados para complementar as informações inseridas pelos usuários.
 
 > **Cenário Selecionado:**  
-> Este projeto segue o cenário 1, onde a Interface se comunica com uma API externa (OpenWeather) e uma API Backend que gerencia os dados e o fluxo do programa.
+> Este projeto segue o cenário 1.1, onde a comunicação com uma API externa (OpenWeather) é realizada pelo Backend. Quando o usuário submete o formulário na rota /form, o Flask processa essa submissão no servidor e executa a função get_weather_data(API_KEY) para recuperar os dados climáticos. Esses dados são então usados para complementar as informações do formulário antes de serem salvos no banco de dados. Portanto, a integração com o OpenWeather ocorre inteiramente no lado do servidor, ou seja, no backend.
 
 ## Estrutura do Projeto
 
@@ -101,7 +101,7 @@ Isso iniciará dois containers:
 
 ## Fluxograma da Arquitetura da Aplicação
 A seguir, um fluxograma ilustrando a arquitetura do sistema:
-![](/src/images/cenario1.png)
+![](/src/images/cenario1_1.png)
 
 ## Interface do Usuário
 A aplicação conta com páginas que permitem as seguintes funcionalidades:
