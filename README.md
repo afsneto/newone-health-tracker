@@ -11,7 +11,7 @@ A aplicação é composta por três componentes principais:
 - **API Backend:**  
   Implementada com Flask, essa API é responsável por controlar o fluxo da aplicação, realizando operações de CRUD (criar, ler, atualizar, excluir) sobre os registros de atividades armazenados em um banco de dados SQLite.
 
-- **API Externa (Weather Service):**  
+- **API Externa (Open Weather):**  
   Um microserviço independente que obtém dados climáticos do OpenWeatherMap e os disponibiliza através de um endpoint REST. A API Backend integra esses dados para complementar as informações inseridas pelos usuários.
 
 > **Cenário Selecionado:**  
