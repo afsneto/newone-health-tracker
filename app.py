@@ -1,5 +1,7 @@
 import requests
 from flask import Flask, render_template, redirect, url_for
+# from flask import request, jsonify
+# from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from forms import HealthDataForm
 
@@ -47,7 +49,7 @@ def index():
 @app.route('/form', methods=['GET', 'POST'])
 def form():
     form = HealthDataForm()
-    API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxx" # Inserir chave API https://openweathermap.org/api
+    API_KEY = "4e2849bebcb47a2261172cc0194c444c"
     if form.validate_on_submit():
         # Extract weather data from API
         weather_data = get_weather_data(API_KEY)
@@ -102,6 +104,17 @@ def delete_record(id):
     db.session.commit()
     return redirect(url_for('records'))
 
+# @app.route('/delete/<int:id>', methods=['DELETE'])
+# def delete_record(id):
+#     record = HealthData.query.get_or_404(id)
+#     if record:
+#         # Delete the record from the database
+#         db.session.delete(record)
+#         db.session.commit()
+#         return jsonify({'message': 'Record deleted successfully'}), 200
+    
+#     return f"Product with id {id} not found", 404
+
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
 def update_record(id):
     record = HealthData.query.get_or_404(id)
@@ -119,6 +132,34 @@ def update_record(id):
         return redirect(url_for('records'))
     return render_template('update_record.html', form=form, record=record)
 
+# Rota PUT: utilizada para atualizar um registro existente via JSON
+# @app.route('/update/<int:id>', methods=['GET', 'PUT'])
+# def update_record(id):
+#     record = HealthData.query.get_or_404(id)
+#     if request.method == 'GET':
+#         form = HealthDataForm(obj=record)
+#         return render_template('update_record.html', form=form, record=record)
+#     elif request.method == 'PUT':
+#         data = request.get_json()
+#         if not data:
+#             return jsonify({"error": "No input data provided"}), 400
 
+#         try:
+#             if 'date' in data:
+#                 record.date = datetime.strptime(data['date'], "%Y-%m-%d")
+#         except ValueError:
+#             return jsonify({"error": "Invalid date format, expected YYYY-MM-DD"}), 400
+
+#         record.exercise = data.get('exercise', record.exercise)
+#         record.meditation = data.get('meditation', record.meditation)
+#         record.sleep = data.get('sleep', record.sleep)
+#         record.city = data.get('city', record.city)
+#         record.country = data.get('country', record.country)
+#         record.temperature = data.get('temperature', record.temperature)
+#         record.description = data.get('description', record.description)
+
+#         db.session.commit()
+#         return jsonify({"message": f"Record {id} updated successfully."}), 200
+    
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
