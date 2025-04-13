@@ -129,6 +129,8 @@ Permite a edição dos dados cadastrados.
 ## Arquitetura REST
 A aplicação utiliza uma arquitetura REST para:
 * API Backend: Gerencia as operações de CRUD (criação, leitura, atualização e exclusão) dos registros de atividades.
+* Como formulários HTML suportam nativamente apenas métodos GET e POST, somente estes são utilizados no projeto.
+* Para consulta inseri os métodos PUT e DELETE comentados no arquivo app.py, pois não são utilizados no projeto final.
 * Microserviço Weather: Fornece os dados climáticos a partir do OpenWeatherMap. O serviço é consumido pela API Backend para complementar os registros inseridos pelos usuários.
 
 A comunicação entre os componentes ocorre da seguinte forma:
